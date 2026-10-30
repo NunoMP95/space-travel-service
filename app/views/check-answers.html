@@ -1,0 +1,124 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start - Summary – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        Check your answers before sending your application
+      </h1>
+
+{% set addressHtml %}
+  {{ data['addressLine1'] }}<br>
+  {% if data['addressLine2'] %}{{ data['addressLine2'] }}<br>{% endif %}
+  {{ data['addressTown'] }}<br>
+  {% if data['addressCounty'] %}{{ data['addressCounty'] }}<br>{% endif %}
+  {{ data['addressPostcode'] }}
+{% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Completed space flight training"
+            },
+            value: {
+              text: data['spaceTraining']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/space-training",
+                  text: "Change",
+                  visuallyHiddenText: "whether you've completed space flight training"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: data['yourName']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/your-name",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: addressHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "/your-address",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "Destination"
+            },
+            value: {
+              text: data['yourDestination']
+            },
+            actions: {
+              items: [
+                {
+                  href: "your-destination",
+                  text: "Change",
+                  visuallyHiddenText: "destination"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Now send your booking
+      </h2>
+
+      <p>
+        By submitting this booking you are confirming that, to the best of your knowledge, the details you are providing are correct.
+      </p>
+
+      <form action="/confirmation" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Confirm and send"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

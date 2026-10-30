@@ -1,0 +1,44 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  You cannot book your space travel – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        You cannot book your space travel
+      </h1>
+
+      <p>
+        You must first complete the space flight training.
+      </p>
+
+      <h2 class="govuk-heading-m">
+        What to do next
+      </h2>
+
+      <p>
+        Apply for your <a href="#" class="govuk-link">space flight training</a>.
+      </p>
+
+      <br>
+
+      <p>
+        Read more <a href="/path/of/page">about this topic</a>.
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}
